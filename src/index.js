@@ -1,5 +1,6 @@
 import { render } from "react-dom";
-import { App } from "./App";
+import { App } from "./App.jsx";
+import React from "react";
 import "./index.css";
 import { makeServer } from "./server";
 //Starting Mock Server
