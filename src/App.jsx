@@ -10,20 +10,93 @@ import {
   History,
   Home,
 } from "./pages/pages";
-
+import { Routes, Route } from "react-router-dom";
+import { PublicRoute, RequiresAuth } from "./Components/components";
 export const App = () => (
   <>
-    {/* These are the Public Pages */}
-    <Home />
-    <Login />
-    <VideoListing />
-    <Video />
-    <Signup />
-    {/* These are the private pages */}
-    <History />
-    <Liked />
-    <Playlist />
-    <Playlists />
-    <WatchLater />
+    <Routes>
+      {/* These are the Public Pages */}
+      <Route
+        path="/"
+        element={
+          <PublicRoute>
+            <Home />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <Signup>
+            <VideoListing />
+          </Signup>
+        }
+      />
+      <Route
+        path="/videos"
+        element={
+          <PublicRoute>
+            <VideoListing />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/video/:id"
+        element={
+          <PublicRoute>
+            <Video />
+          </PublicRoute>
+        }
+      />
+      {/* These are the private pages */}
+      <Route
+        path="/history"
+        element={
+          <RequiresAuth>
+            <History />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/liked"
+        element={
+          <RequiresAuth>
+            <Liked />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/playlists"
+        element={
+          <RequiresAuth>
+            <Playlists />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/playlists/playlist/:id"
+        element={
+          <RequiresAuth>
+            <Playlist />
+          </RequiresAuth>
+        }
+      />
+      <Route
+        path="/watch-later"
+        element={
+          <RequiresAuth>
+            <WatchLater />
+          </RequiresAuth>
+        }
+      />
+    </Routes>
   </>
 );
