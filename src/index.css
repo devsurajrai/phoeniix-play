@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-sm-secondary {
+    @apply p-1 font-semibold text-sm border-2 border-[#27AB83] hover:bg-[#C6F7E2] hover:text-[#334E68];
+  }
+  .btn-sm-primary {
+    @apply p-1 font-semibold text-sm border-2 border-[#27AB83] bg-[#27AB83] hover:bg-[#C6F7E2] hover:text-[#334E68];
+  }
+  .btn-md-primary {
+    @apply p-4 font-black  border-2 border-[#27AB83] bg-[#27AB83] text-white  hover:bg-[#C6F7E2] hover:text-[#334E68];
+  }
+}

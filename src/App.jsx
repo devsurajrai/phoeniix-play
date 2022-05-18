@@ -11,9 +11,11 @@ import {
   Home,
 } from "./pages/pages";
 import { Routes, Route } from "react-router-dom";
-import { PublicRoute, RequiresAuth } from "./Components/components";
+import { Header, PublicRoute, RequiresAuth } from "./Components/components";
 export const App = () => (
   <>
+    {/* Header will be visible on each page. */}
+    <Header />
     <Routes>
       {/* These are the Public Pages */}
       <Route
