@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="flex justify-center items-center h-[calc(100vh-5rem)] bg-[#F0F4F8]">
-      <section className="w-2/4 antialiased flex flex-col gap-5 items-center">
+      <section className=" antialiased flex flex-col gap-5 items-center">
         <h1 className="font-[roboto] font-black text-[3rem] ">
           Welcome To Phoenix Video Library
         </h1>
