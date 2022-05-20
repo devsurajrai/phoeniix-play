@@ -8,3 +8,4 @@ export { Playlists } from "./Playlists.jsx";
 export { Video } from "./Video.jsx";
 export { VideoListing } from "./VideoListing.jsx";
 export { WatchLater } from "./WatchLater.jsx";
+export { BuildComponents } from "./BuildComponents.jsx";
