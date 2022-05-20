@@ -20,7 +20,10 @@ const Sidebar = () => {
       bg-black opacity-40
       ${!isSidebarShown && "hidden"}
          `}
+        onClick={() => dispatch(toggleSidebar())}
+        role="button"
       ></div>
+
       <div
         className={`w-[20rem] h-screen bg-[#d9dde0] pl-5 absolute top-0 ${
           !isSidebarShown ? "-left-[20rem]" : "left-0"

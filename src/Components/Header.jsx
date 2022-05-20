@@ -29,13 +29,6 @@ const Header = () => {
         <Link to="/signup">
           <button className="btn-sm-primary">Signup</button>
         </Link>
-
-        <button
-          className="btn-sm-primary"
-          onClick={() => dispatch(toggleSidebar())}
-        >
-          SIDEBAR
-        </button>
       </section>
     </div>
   );

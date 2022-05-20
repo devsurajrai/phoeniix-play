@@ -1,7 +1,11 @@
-import { Sidebar } from "../Components/SideBar/SideBar.jsx";
+import { VideoCard } from "../Components/VideoCard.jsx";
 
-const BuildComponents = () => {
-  return <Sidebar />;
-};
+const BuildComponents = () => (
+  <>
+    <VideoCard />
+    <VideoCard />
+    <VideoCard />
+  </>
+);
 
 export { BuildComponents };

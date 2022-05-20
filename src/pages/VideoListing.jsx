@@ -1,9 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { VideoListingMain } from "../Components/VideoListingMain.jsx";
 
 const VideoListing = () => {
-  return (
-    <div className="flex flex-col gap-2 p-3">This is a video Listing Page</div>
-  );
+  return <VideoListingMain />;
 };
 
 export { VideoListing };
