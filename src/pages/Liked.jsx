@@ -1,5 +1,5 @@
 const Liked = () => {
-  return <div>This is a Liked page</div>;
+  return <div className="h-screen w-screen">This is a Liked page</div>;
 };
 
 export { Liked };

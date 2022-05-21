@@ -20,7 +20,7 @@ const VideoListingMain = () => {
             );
           })}
         </section>
-        <p className="font-bold text-[] p-3 text-md">
+        <p className="font-bold text-[] p-3 text-md mx-3">
           Total Videos:{videoData.length}
         </p>
       </div>
