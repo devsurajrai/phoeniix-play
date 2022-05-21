@@ -25,12 +25,12 @@ const Sidebar = () => {
       ></div>
 
       <div
-        className={`w-[20rem] h-screen bg-[#d9dde0] pl-5 absolute top-0 ${
+        className={`w-[20rem] h-screen bg-[#334E68] text-white pl-5 absolute top-0  ${
           !isSidebarShown ? "-left-[20rem]" : "left-0"
-        } transition-all duration-400 z-10`}
+        } transition-all duration-400 z-10 `}
       >
         <button
-          className="btn-sm-secondary border-none text-3xl p-3   rounded-sm hover:bg-[#d9dde0]"
+          className="btn-sm-secondary border-none text-3xl p-3   rounded-sm hover:hover:bg-[#334E68] hover:text-[#d9dde0]"
           onClick={() => dispatch(toggleSidebar())}
         >
           <i className="fa-solid fa-bars" />
