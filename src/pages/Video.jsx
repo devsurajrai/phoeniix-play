@@ -1,5 +1,5 @@
 const Video = () => {
-  return <div>This is a Video page</div>;
+  return <div className="h-screen w-screen">This is a Video page</div>;
 };
 
 export { Video };

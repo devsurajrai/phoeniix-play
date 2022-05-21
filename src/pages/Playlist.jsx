@@ -1,5 +1,5 @@
 const Playlist = () => {
-  return <div>This is a Playlist page</div>;
+  return <div className="h-screen w-screen">This is a Playlist page</div>;
 };
 
 export { Playlist };
