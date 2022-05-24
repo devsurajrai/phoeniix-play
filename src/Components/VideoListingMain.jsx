@@ -1,8 +1,8 @@
-import { useFetchedVideoCategories } from "../customHooks/useFetchedVideoCategories.jsx";
-import { useFetchedVideoData } from "../customHooks/useFetchedVideoData.jsx";
+import { useFetchedVideoCategories } from "../customHooks/useFetchedVideoCategories.js";
+import { useFetchedVideosData } from "../customHooks/useFetchedVideosData.js";
 
 const VideoListingMain = () => {
-  const { jsx, videoData } = useFetchedVideoData();
+  const { jsx, videosData } = useFetchedVideosData({});
   const videoCategories = useFetchedVideoCategories();
 
   return (
@@ -21,7 +21,7 @@ const VideoListingMain = () => {
           })}
         </section>
         <p className="font-bold text-[] p-3 text-md mx-3">
-          Total Videos:{videoData.length}
+          Total Videos:{videosData.length}
         </p>
       </div>
       <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem]">

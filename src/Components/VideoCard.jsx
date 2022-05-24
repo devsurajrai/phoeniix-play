@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleAddToPlaylistModal } from "../redux/slice/addToPlaylistModalSlice";
-import { AddToPlaylistModal } from "./addToPlaylistModal.jsx";
-const VideoCard = ({ video }) => {
+import { AddToPlaylistModal } from "./AddToPlaylistModal.jsx";
+const VideoCard = ({ video, width }) => {
   const dispatch = useDispatch();
   const { _id, title, thumbnail_url, like } = video;
 
   return (
     <>
-      <div className="bg-slate-800 w-1/5 text-[#d9dde0] rounded-lg p-2">
+      <div className={`bg-slate-800  ${width} text-[#d9dde0] rounded-lg p-2`}>
         <Link to={`/videos/video/${_id}`}>
           <section className="p-2 cursor-pointer">
             {/* here goes the thumbnail  */}
