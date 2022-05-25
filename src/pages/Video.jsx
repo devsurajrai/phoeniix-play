@@ -1,5 +1,11 @@
+import { VideoSinglePage } from "../Components/VideoSinglePage.jsx";
+
 const Video = () => {
-  return <div className="h-screen w-screen">This is a Video page</div>;
+  return (
+    <div className="h-screen w-screen">
+      <VideoSinglePage />
+    </div>
+  );
 };
 
 export { Video };

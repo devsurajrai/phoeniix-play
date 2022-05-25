@@ -14,13 +14,11 @@ import {
 import { Routes, Route } from "react-router-dom";
 import { Header, PublicRoute, RequiresAuth } from "./Components/components";
 import { Sidebar } from "./Components/SideBar/SideBar.jsx";
-
 export const App = () => (
-  <div className="relative height-[100vh] overflow-hidden">
+  <div className="relative h-screen overflow-hidden">
     {/* Header will be visible on each page. */}
     <Header />
     <Sidebar />
-
     <Routes>
       {/* These are the Public Pages */}
       <Route
@@ -56,7 +54,7 @@ export const App = () => (
         }
       />
       <Route
-        path="/videos/video/:id"
+        path="/videos/video/:videoID"
         element={
           <PublicRoute>
             <Video />

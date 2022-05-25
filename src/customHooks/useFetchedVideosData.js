@@ -9,12 +9,16 @@ import { useEffect } from "react";
 import { VideoCard } from "../Components/VideoCard.jsx";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const useFetchedVideoData = () => {
+export const useFetchedVideosData = ({
+  videoCardWidth = "w-1/5",
+  videoID = 0,
+}) => {
   const videoDataStatus = useSelector(selectVideosStatus);
   const videoDataError = useSelector(selectVideosError);
-  const videoData = useSelector(selectVideos);
+  const videosData = useSelector(selectVideos);
   const dispatch = useDispatch();
   let jsx = "";
+  // fetch videos from backend only when the status is idle
   useEffect(() => {
     if (videoDataStatus === "idle") {
       dispatch(fetchVideos());
@@ -26,9 +30,12 @@ const useFetchedVideoData = () => {
   } else if (videoDataStatus === "failed") {
     jsx = <h3>{videoDataError}</h3>;
   } else {
-    jsx = videoData.map((video) => <VideoCard key={video._id} video={video} />);
+    jsx = videosData.map(
+      (video) =>
+        video._id !== videoID && (
+          <VideoCard key={video._id} video={video} width={videoCardWidth} />
+        )
+    );
   }
-  return { jsx, videoData };
+  return { jsx, videosData };
 };
-
-export { useFetchedVideoData };

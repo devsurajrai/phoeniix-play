@@ -20,10 +20,11 @@ const videosSlice = createSlice({
       state.status = "loading";
     },
     [fetchVideos.fulfilled]: (state, action) => {
-      state.videos = action.payload;
       state.status = "fulfilled";
+      state.videos = action.payload;
     },
     [fetchVideos.rejected]: (state, action) => {
+      // return {...state, status: "failed"}
       state.status = "failed";
       state.error = action.error.message;
     },
