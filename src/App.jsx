@@ -12,13 +12,20 @@ import {
   BuildComponents,
 } from "./pages/pages";
 import { Routes, Route } from "react-router-dom";
-import { Header, PublicRoute, RequiresAuth } from "./Components/components";
-import { Sidebar } from "./Components/SideBar/SideBar.jsx";
+import {
+  Header,
+  PublicRoute,
+  RequiresAuth,
+  Toast,
+  Sidebar,
+} from "./Components/components";
+
 export const App = () => (
   <div className="relative h-screen overflow-hidden">
     {/* Header will be visible on each page. */}
     <Header />
     <Sidebar />
+    <Toast />
     <Routes>
       {/* These are the Public Pages */}
       <Route

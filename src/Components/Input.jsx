@@ -10,6 +10,7 @@ const Input = ({ placeholder, password }) => {
       />
       {password && <i className="fa-solid fa-eye" />}
 
+      {/* This icon will be visible when user is clicked on eye icon to show the pass  */}
       {/* <i className="fa-solid fa-eye-slash" /> */}
     </label>
   );
