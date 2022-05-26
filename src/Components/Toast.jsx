@@ -15,7 +15,7 @@ const Toast = () => {
             toastType: "",
           })
         );
-      }, 1000);
+      }, 1500);
   });
 
   return (
