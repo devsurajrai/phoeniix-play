@@ -4,6 +4,7 @@ import addToPlaylistModalReducer from "../slice/addToPlaylistModalSlice";
 import videosReducer from "../slice/videosSlice";
 import videoCategoriesReducer from "../slice/videoCategoriesSlice";
 import videoSliceReducer from "../slice/videoSlice";
+import toastReducer from "../slice/toastSlice";
 export default configureStore({
   reducer: {
     sidebar: sideBarReducer,
@@ -11,5 +12,6 @@ export default configureStore({
     videos: videosReducer,
     videoCategories: videoCategoriesReducer,
     video: videoSliceReducer,
+    toast: toastReducer,
   },
 });
