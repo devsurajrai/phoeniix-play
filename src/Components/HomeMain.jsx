@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { selectAuthInfo } from "../redux/slice/authSlice";
+import { useSelector } from "react-redux";
 
 const HomeMain = () => {
+  const authInfo = useSelector(selectAuthInfo);
+  console.log(authInfo.isUserLoggedIn);
   return (
     <div className="flex justify-center items-center h-[calc(100vh-5rem)] bg-[#F0F4F8]">
       <section className=" antialiased flex flex-col gap-5 items-center">

@@ -6,7 +6,6 @@ const Input = ({
   callback,
   setPassTypeHandler,
 }) => {
-  console.log(type);
   return (
     <label className="flex items-center border-2 border-[#27AB83]   px-5 w-full ">
       <input

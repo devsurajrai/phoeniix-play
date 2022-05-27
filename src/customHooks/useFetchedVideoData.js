@@ -16,8 +16,6 @@ const useFetchedVideoData = (videoID) => {
   const videoData = useSelector(selectVideoData);
   const videoDataStatus = useSelector(selectVideoStatus);
   const videoDataError = useSelector(selectVideoError);
-
-  console.log(videoID);
   useEffect(() => {
     dispatch(fetchVideoData(videoID));
   }, [dispatch, videoID]);
