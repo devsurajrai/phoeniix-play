@@ -11,8 +11,8 @@ const Toast = () => {
         dispatch(
           setToastData({
             toastVisibility: !toastVisibility,
-            toastText: "",
-            toastType: "",
+            toastText,
+            toastType,
           })
         );
       }, 1500);
@@ -23,20 +23,32 @@ const Toast = () => {
       {
         <div
           className={` absolute  w-[20rem] px-2 py-4 m-2 tracking-wide  ${
-            toastType === "error" ? "bg-red-300" : "bg-green-300"
-          }  flex justify-center items-center gap-2 ${
+            toastType === "error"
+              ? "bg-red-300"
+              : toastType === "in progress"
+              ? "bg-yellow-300"
+              : "bg-green-300"
+          }  flex justify-center items-center gap-3 ${
             !toastVisibility ? "-right-[22rem]" : "right-0"
           } transition-all duration-200`}
         >
           {toastType === "error" ? (
             <i className={` fa-solid fa-circle-xmark text-red-700  text-xl`} />
+          ) : toastType === "in progress" ? (
+            <i className="fa-solid fa-spinner text-yellow-700 text-xl"></i>
           ) : (
             <i className="fa-solid fa-circle-check text-xl text-green-700" />
           )}
           <p
-            className={` ${
-              toastType === "error" ? "text-red-700" : "text-green-700"
-            } font-semibold`}
+            className={`
+            ${
+              toastType === "error"
+                ? "bg-red-300"
+                : toastType === "in progress"
+                ? "bg-yellow-300"
+                : "bg-green-300"
+            }
+            font-semibold`}
           >
             {toastText}
           </p>

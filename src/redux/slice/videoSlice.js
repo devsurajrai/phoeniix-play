@@ -3,8 +3,6 @@ import axios from "axios";
 export const fetchVideoData = createAsyncThunk(
   "video/fetchVideoData",
   async (videoID) => {
-    console.log("Thunk", videoID);
-    console.log("Think is getting executed");
     const response = await axios.get(`/api/video/${videoID}`);
     return response.data.video;
   }

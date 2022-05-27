@@ -5,6 +5,7 @@ import videosReducer from "../slice/videosSlice";
 import videoCategoriesReducer from "../slice/videoCategoriesSlice";
 import videoSliceReducer from "../slice/videoSlice";
 import toastReducer from "../slice/toastSlice";
+import authSliceReducer from "../slice/authSlice";
 export default configureStore({
   reducer: {
     sidebar: sideBarReducer,
@@ -13,5 +14,6 @@ export default configureStore({
     videoCategories: videoCategoriesReducer,
     video: videoSliceReducer,
     toast: toastReducer,
+    auth: authSliceReducer,
   },
 });
