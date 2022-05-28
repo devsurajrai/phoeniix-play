@@ -1,24 +1,20 @@
 import { Input, Button } from "./components.js";
 import { useDispatch } from "react-redux";
-import { selectToastData, setToastData } from "../redux/slice/toastSlice.js";
+import { setToastData } from "../redux/slice/toastSlice.js";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { selectAuthInfo, loginUser } from "../redux/slice/authSlice.js";
 import { login } from "../utils/utils.js";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const LoginMain = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [loginEmail, setLoginEmail] = useState("devsurajrai@gmail.com");
-  const [loginPass, setLoginPass] = useState("rai123");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPass, setLoginPass] = useState("");
   const authState = useSelector(selectAuthInfo);
   const [passType, setPassType] = useState("password");
-  const handleLoginValidation = (event) => {
-    event.preventDefault();
-  };
   // The code below is for auto changing the password type to "password" from "text" after one second
   useEffect(() => {
     if (passType === "text")
@@ -71,13 +67,7 @@ const LoginMain = () => {
   return (
     <div className="h-[calc(100vh-4rem)] w-screen  flex flex-col justify-center  items-center">
       <h2 className="text-4xl p-3 font-bold tracking-wider">Login</h2>
-      <form
-        className="px-20 pt-14 pb-10 flex flex-col justify-between items-center gap-5 bg-white  w-[40vw] h-3/5 shadow-2xl"
-        action="submit"
-        onSubmit={(event) =>
-          login(dispatch, loginUser, event, loginEmail, loginPass)
-        }
-      >
+      <form className="px-20 pt-14 pb-10 flex flex-col justify-between items-center gap-5 bg-white  w-[40vw]  shadow-2xl">
         <Input
           placeholder="Enter Email"
           type="email"
@@ -93,7 +83,14 @@ const LoginMain = () => {
           password
         />
         <div className="flex flex-col items-center w-full gap-5">
-          <Button btnType="primary" buttonText="Login" type="submit" />
+          <Button
+            btnType="primary"
+            buttonText="Login"
+            type="submit"
+            callback={(event) =>
+              login(dispatch, loginUser, event, loginEmail, loginPass)
+            }
+          />
           <Button
             btnType="secondary"
             buttonText="Login As Guest "
@@ -108,6 +105,12 @@ const LoginMain = () => {
             }
           />
         </div>
+        <Link to="/signup">
+          <span>Don't Have an account?</span>
+          <button className="border-0 text-[#27AB83]   ml-2 border-b-2 border-[#27AB83]">
+            Create One
+          </button>
+        </Link>
       </form>
     </div>
   );

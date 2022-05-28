@@ -1,7 +1,8 @@
 import React from "react";
+import { SignupMain } from "../Components/components";
 
 const Signup = () => {
-  return <div className="h-screen w-screen">This is a Signup page</div>;
+  return <SignupMain />;
 };
 
 export { Signup };

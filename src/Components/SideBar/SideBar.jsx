@@ -16,7 +16,7 @@ const Sidebar = () => {
     <>
       <div
         className={`h-screen w-screen absolute top-0
-      bg-black opacity-40
+      bg-black opacity-40 cursor-default
       ${!isSidebarShown && "hidden"}
          `}
         onClick={() => dispatch(toggleSidebar())}

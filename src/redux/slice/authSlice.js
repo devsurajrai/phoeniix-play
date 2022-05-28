@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
+// api call for logging in
 export const loginUser = createAsyncThunk(
   "login/login-user",
   async ({ email, password }) => {
@@ -8,6 +10,22 @@ export const loginUser = createAsyncThunk(
     return response.data.encodedToken;
   }
 );
+// api call for creating user
+export const createUser = createAsyncThunk(
+  "signup/create-user",
+  async ({ email, password, firstName, lastName }) => {
+    const response = await axios.post("/api/auth/signup", {
+      email,
+      password,
+      firstName,
+      lastName,
+    });
+    console.log(response);
+    localStorage.setItem("token", response.data.encodedToken);
+    return response.data.encodedToken;
+  }
+);
+
 const token = localStorage.getItem("token");
 const encodedToken = token ? token : null;
 const isUserLoggedIn = token ? true : false;
@@ -17,7 +35,6 @@ const initialState = {
   status: "idle",
   error: null,
 };
-console.log("authInitial", initialState);
 const authSlice = createSlice({
   name: "login",
   initialState,
@@ -45,6 +62,19 @@ const authSlice = createSlice({
     },
     [loginUser.rejected]: (state, action) => {
       state.status = "failed";
+      state.error = action.error.message;
+    },
+    [createUser.pending]: (state) => {
+      state.status = "loading";
+    },
+    [createUser.fulfilled]: (state, action) => {
+      state.status = "finished";
+      state.isUserLoggedIn = true;
+      state.encodedToken = action.payload;
+    },
+    [createUser.rejected]: (state, action) => {
+      state.status = "failed";
+      console.log(action.error);
       state.error = action.error.message;
     },
   },
