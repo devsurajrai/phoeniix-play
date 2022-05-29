@@ -8,3 +8,4 @@ export { Input } from "./Input.jsx";
 export { Button } from "./Button.jsx";
 export { Toast } from "./Toast.jsx";
 export { Sidebar } from "./SideBar/SideBar.jsx";
+export { SignupMain } from "./SignupMain.jsx";
