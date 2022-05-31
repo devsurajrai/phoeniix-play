@@ -1,7 +1,7 @@
-import React from "react";
+import { HistoryMain } from "../Components/components";
 
 const History = () => {
-  return <div className="h-screen w-screen">This is hiostory Page</div>;
+  return <HistoryMain />;
 };
 
 export { History };

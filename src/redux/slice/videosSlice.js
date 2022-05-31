@@ -14,7 +14,15 @@ const fetchVideos = createAsyncThunk("videos/fetchVideos", async () => {
 const videosSlice = createSlice({
   name: "videos",
   initialState,
-  reducers: {},
+  reducers: {
+    increaseVideoLikeCount: (state, action) => {
+      console.log("action.payload", action.payload);
+      const index = state.videos.findIndex(
+        (video) => video._id === action.payload._id
+      );
+      state.videos[index].likes += 1;
+    },
+  },
   extraReducers: {
     [fetchVideos.pending]: (state) => {
       state.status = "loading";
@@ -33,6 +41,6 @@ const videosSlice = createSlice({
 const selectVideos = (state) => state.videos.videos;
 const selectVideosStatus = (state) => state.videos.status;
 const selectVideosError = (state) => state.videos.error;
-
+export const { increaseVideoLikeCount } = videosSlice.actions;
 export { fetchVideos, selectVideos, selectVideosStatus, selectVideosError };
 export default videosSlice.reducer;
