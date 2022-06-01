@@ -25,9 +25,6 @@ const Header = () => {
         </Link>
       </section>
       <section className="flex gap-5">
-        <Link to="/build-components">
-          <button className="btn-sm-secondary">Build Components</button>
-        </Link>
         {!isUserLoggedIn ? (
           <>
             <Link to="/login">
