@@ -21,7 +21,6 @@ export const useFetchedHistoryData = ({
   // fetch videos from backend only when the status is idle
   useEffect(() => {
     if (historyDataStatus === "idle") {
-      console.log("calling api");
       dispatch(fetchHistoryVideos());
     }
   }, [historyDataStatus, dispatch]);
@@ -36,7 +35,12 @@ export const useFetchedHistoryData = ({
       ? (jsx = historyData.map(
           (video) =>
             video._id !== videoID && (
-              <VideoCard key={video._id} video={video} width={videoCardWidth} />
+              <VideoCard
+                key={video._id}
+                video={video}
+                width={videoCardWidth}
+                isInHistory={true}
+              />
             )
         ))
       : (jsx = (

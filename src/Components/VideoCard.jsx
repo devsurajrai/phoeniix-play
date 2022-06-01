@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 // the above es-lint rules have been disabled for this file, these are basically to enforce accessibility
@@ -12,12 +13,15 @@ import {
   selectLikedVideoError,
   selectLikedVideos,
   setLikedVideoStatusToDefault,
+  removeLikedVideo,
 } from "../redux/slice/likedVideoSlice.js";
 import {
   selectWatchLaterError,
   selectWatchLaterStatus,
   addVideoToWatchLater,
   setWatchlaterStatusToDefault,
+  selectWatchLater,
+  removeWatchLaterVideo,
 } from "../redux/slice/watchLaterSlice.js";
 import {} from "../redux/slice/historySlice.js";
 import {
@@ -26,38 +30,69 @@ import {
 } from "../redux/slice/historySlice.js";
 import { selectAuthInfo } from "../redux/slice/authSlice.js";
 import { useEffect } from "react";
-import { setToastData } from "../redux/slice/toastSlice";
 import {
-  videoCardHandlers,
+  setToastData,
+  setToastText,
+  selectToastText,
+} from "../redux/slice/toastSlice";
+import { videoCardHandlers } from "../utils/videoCardHandlers.js";
+import {
+  increaseVideoLikeCount,
+  decreaseVideoLikeCount,
+} from "../redux/slice/videosSlice.js";
+import {
+  isVideoInHistory,
+  isVideoInWatchLater,
   isVideoInLikedVideos,
-} from "../utils/videoCardHandlers.js";
-import { increaseVideoLikeCount } from "../redux/slice/videosSlice.js";
-import { isVideoInHistory } from "../utils/historyHelpers.js";
+} from "../utils/utils";
 import { removeHistoryVideo } from "../redux/slice/historySlice";
-const VideoCard = ({ video, width }) => {
+import {
+  selectHistoryStatus,
+  setHistoryStatusToDefault,
+} from "../redux/slice/historySlice";
+const VideoCard = ({ video, width, isInHistory }) => {
   const dispatch = useDispatch();
   const { _id, title, thumbnail_url, likes } = video;
   const { encodedToken } = useSelector(selectAuthInfo);
-  const likedVideosData = useSelector(selectLikedVideos);
+
   const [currentVideo, setCurrentVideo] = useState(null);
-  const historyVideoData = useSelector(selectHistory);
   const navigate = useNavigate();
-  const isVideoPresentInHistory = isVideoInHistory(historyVideoData, video);
-  // Like and Watchlater api response status and error
+
+  // Like and Watchlater states access
   const videoLikeStatus = useSelector(selectLikedVideoStatus);
   const videoLikeError = useSelector(selectLikedVideoError);
   const videoWatchLaterStatus = useSelector(selectWatchLaterStatus);
   const videoWatchLaterError = useSelector(selectWatchLaterError);
+  const toastText = useSelector(selectToastText);
+  const historyStatus = useSelector(selectHistoryStatus);
+  const likedVideosData = useSelector(selectLikedVideos);
+  const historyVideoData = useSelector(selectHistory);
+  const watchLaterVideoData = useSelector(selectWatchLater);
+  // check for the video in history,likes and watchlater
+  const isVideoPresentInHistory = isVideoInHistory(historyVideoData, video);
+  const isVideoPresentInLikes = isVideoInLikedVideos(likedVideosData, video);
+  const isVideoPresentInWatchLater = isVideoInWatchLater(
+    watchLaterVideoData,
+    video
+  );
   // Like, watchlater and history click handlers
   const {
     addLikeVideoHandler,
     addWatchlaterVideoHandler,
     addHistoryVideoHandler,
+    removeLikedVideoHandler,
+    removeHistoryVideoHandler,
+    removeWatchLaterVideoHandler,
   } = videoCardHandlers(
     dispatch,
     addVideoToWatchLater,
     addLikedVideo,
-    addVideoToHistory
+    addVideoToHistory,
+    removeLikedVideo,
+    setToastText,
+    removeHistoryVideo,
+    removeWatchLaterVideo,
+    removeWatchLaterVideo
   );
   // useEffect for handling the toast behaviour
   useEffect(() => {
@@ -69,14 +104,18 @@ const VideoCard = ({ video, width }) => {
       dispatch(
         setToastData({
           toastVisibility: true,
-          toastText: "Video Added To Likes",
+          toastText: toastText,
           toastType: "success",
         })
       );
       // set the like video api response status from "finished" to "idle"
       dispatch(setLikedVideoStatusToDefault());
       // increase the like count of the video liked
-      currentVideo && dispatch(increaseVideoLikeCount(currentVideo));
+      if (currentVideo) {
+        !isVideoPresentInLikes
+          ? dispatch(decreaseVideoLikeCount(currentVideo))
+          : dispatch(increaseVideoLikeCount(currentVideo));
+      }
     }
     if (videoLikeStatus === "failed") {
       dispatch(
@@ -92,10 +131,11 @@ const VideoCard = ({ video, width }) => {
       dispatch(
         setToastData({
           toastVisibility: true,
-          toastText: "Video added to Watchlater",
+          toastText: toastText,
           toastType: "success",
         })
       );
+      console.log(toastText);
       dispatch(setWatchlaterStatusToDefault());
     }
     if (videoWatchLaterStatus === "failed") {
@@ -108,14 +148,17 @@ const VideoCard = ({ video, width }) => {
       );
       dispatch(setWatchlaterStatusToDefault());
     }
-  }, [
-    videoLikeStatus,
-    videoLikeError,
-    dispatch,
-    videoWatchLaterError,
-    videoWatchLaterStatus,
-    currentVideo,
-  ]);
+    if (historyStatus === "finished") {
+      dispatch(
+        setToastData({
+          toastVisibility: true,
+          toastText: toastText,
+          toastType: "success",
+        })
+      );
+      dispatch(setHistoryStatusToDefault());
+    }
+  }, [videoLikeStatus, videoWatchLaterStatus]);
   const cardClickHandler = (_id, video, encodedToken) => {
     !isVideoPresentInHistory && addHistoryVideoHandler(video, encodedToken);
     navigate(`/videos/video/${_id}`);
@@ -144,30 +187,36 @@ const VideoCard = ({ video, width }) => {
 
         <footer
           className={`text-2xl p-2 pb-3 ${
-            !isVideoPresentInHistory && "flex justify-between"
+            !isInHistory && "flex justify-between"
           } `}
         >
           <section className="text-sm flex items-center">
-            {!isVideoPresentInHistory && <p>Likes: {likes}</p>}
+            {!isInHistory && <p>Likes: {likes}</p>}
           </section>
           <section>
-            {!isVideoPresentInHistory ? (
+            {!isInHistory ? (
               <>
                 <i
                   className={`fa-solid fa-thumbs-up pr-3 cursor-pointer hover:text-[#27AB83] ${
-                    isVideoInLikedVideos(likedVideosData, video) &&
-                    "text-[#27AB83]"
+                    isVideoPresentInLikes && "text-[#27AB83]"
                   }`}
                   onClick={() => {
                     setCurrentVideo(video);
-                    addLikeVideoHandler(video, encodedToken);
+                    !isVideoPresentInLikes
+                      ? addLikeVideoHandler(video, encodedToken)
+                      : removeLikedVideoHandler(video, encodedToken);
                   }}
                 />
                 <i
-                  className={`fa-solid fa-clock pr-3 cursor-pointer  hover:text-[#27AB83] `}
-                  onClick={() => addWatchlaterVideoHandler(video, encodedToken)}
+                  className={`fa-solid fa-clock pr-3 cursor-pointer  hover:text-[#27AB83]
+                  ${isVideoPresentInWatchLater && "text-[#27AB83]"}
+                  `}
+                  onClick={() => {
+                    !isVideoPresentInWatchLater
+                      ? addWatchlaterVideoHandler(video, encodedToken)
+                      : removeWatchLaterVideoHandler(video, encodedToken);
+                  }}
                 />
-
                 <i
                   className="fa-solid fa-plus cursor-pointer hover:text-[#27AB83]
           "
@@ -179,8 +228,7 @@ const VideoCard = ({ video, width }) => {
                 <i
                   className="fa-solid fa-trash cursor-pointer hover:text-[#27AB83]"
                   onClick={() => {
-                    console.log("removing video");
-                    dispatch(removeHistoryVideo({ video, encodedToken }));
+                    removeHistoryVideoHandler(video, encodedToken);
                   }}
                 />
               </div>

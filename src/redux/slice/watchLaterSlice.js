@@ -33,15 +33,20 @@ export const fetchWatchLaterVideos = createAsyncThunk(
 
 // API Call for for deleting a watchlater video array from the database of the user
 // API-> METHOD: POST -> /api/user/watchlater/:videoId
-export const removeHistoryVideo = createAsyncThunk(
-  "watchlater/removeHistoryVideo",
+export const removeWatchLaterVideo = createAsyncThunk(
+  "watchlater/removeWatchLaterVideo",
   async ({ videoID, encodedToken }) => {
+    console.log(videoID);
+    console.log("here in remove watchlter thunk");
     const config = {
       headers: {
         authorization: encodedToken,
       },
     };
-    const response = await axios.get(`/api/user/watchlater/${videoID}`, config);
+    const response = await axios.delete(
+      `/api/user/watchlater/${videoID}`,
+      config
+    );
     return response.data.watchlater;
   }
 );
@@ -52,7 +57,7 @@ const initialState = {
   error: null,
 };
 const watchLaterSlice = createSlice({
-  name: "history",
+  name: "watchlater",
   initialState,
   reducers: {
     setWatchlaterStatusToDefault: (state) => {
@@ -66,7 +71,7 @@ const watchLaterSlice = createSlice({
     },
     [addVideoToWatchLater.fulfilled]: (state, action) => {
       state.status = "finished";
-      state.history = action.payload;
+      state.watchlater = action.payload;
     },
     [addVideoToWatchLater.rejected]: (state, action) => {
       state.status = "failed";
@@ -78,21 +83,21 @@ const watchLaterSlice = createSlice({
     },
     [fetchWatchLaterVideos.fulfilled]: (state, action) => {
       state.status = "finished";
-      state.history = action.payload;
+      state.watchLater = action.payload;
     },
     [fetchWatchLaterVideos.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     },
     //remove  video from watchlater
-    [removeHistoryVideo.pending]: (state) => {
+    [removeWatchLaterVideo.pending]: (state) => {
       state.status = "loading";
     },
-    [removeHistoryVideo.fulfilled]: (state, action) => {
+    [removeWatchLaterVideo.fulfilled]: (state, action) => {
       state.status = "finished";
-      state.history = action.payload;
+      state.watchlater = action.payload;
     },
-    [removeHistoryVideo.rejected]: (state, action) => {
+    [removeWatchLaterVideo.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     },

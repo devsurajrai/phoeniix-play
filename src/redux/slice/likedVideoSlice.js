@@ -37,7 +37,7 @@ export const removeLikedVideo = createAsyncThunk(
         authorization: encodedToken,
       },
     };
-    const response = await axios.post(`/api/user/likes/${videoID}`, config);
+    const response = await axios.delete(`/api/user/likes/${videoID}`, config);
     return response.data.likes;
   }
 );

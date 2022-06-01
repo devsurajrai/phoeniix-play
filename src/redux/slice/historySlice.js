@@ -32,7 +32,7 @@ export const fetchHistoryVideos = createAsyncThunk(
 export const removeHistoryVideo = createAsyncThunk(
   "history/removeHistoryVideo",
   async ({ video, encodedToken }) => {
-    console.log(video, encodedToken);
+    console.log("video ID", video._id);
     const config = {
       headers: {
         authorization: encodedToken,
@@ -93,7 +93,7 @@ const historySlice = createSlice({
     },
     [fetchHistoryVideos.fulfilled]: (state, action) => {
       state.status = "finished";
-      state.history = [...state.history, ...action.payload];
+      state.history = action.payload;
     },
     [fetchHistoryVideos.rejected]: (state, action) => {
       state.status = "failed";
@@ -126,9 +126,9 @@ const historySlice = createSlice({
   },
 });
 
-export const selectHistory = (state) => state.history.history;
-export const selectHistoryStatus = (state) => state.likedVideo.status;
-export const selectHistoryError = (state) => state.likedVideo.error;
+export const selectHistory = (store) => store.history.history;
+export const selectHistoryStatus = (store) => store.history.status;
+export const selectHistoryError = (store) => store.history.error;
 export const { setHistoryStatusToDefault } = historySlice.actions;
 
 export default historySlice.reducer;
