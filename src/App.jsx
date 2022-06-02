@@ -9,7 +9,6 @@ import {
   Liked,
   History,
   Home,
-  BuildComponents,
 } from "./pages/pages";
 import { Routes, Route } from "react-router-dom";
 import { selectAuthInfo } from "./redux/slice/authSlice";
@@ -24,7 +23,6 @@ import {
 import TwopiRest from "twopi-rest";
 
 export const App = () => {
-  const { isUserLoggedIn } = useSelector(selectAuthInfo);
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Header will be visible on each page. */}
@@ -73,14 +71,6 @@ export const App = () => {
           element={
             <PublicRoute>
               <Video />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/build-components"
-          element={
-            <PublicRoute>
-              <BuildComponents />
             </PublicRoute>
           }
         />

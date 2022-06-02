@@ -10,7 +10,7 @@ export const videos = [
     url: "https://www.youtube.com/watch?v=1UIhKZCPMYM",
     title: "Basic Badminton for Beginners.",
     thumbnail_url: "https://i.ytimg.com/vi/1UIhKZCPMYM/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -18,14 +18,14 @@ export const videos = [
     title:
       "Rules of Badminton EXPLAINED! | SINGLES Badminton Rules | Badminton Training in Hindi",
     thumbnail_url: "https://i.ytimg.com/vi/SpnjWGBEtoU/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=jheCYQgupc0",
     title: "How to Smash? | Badminton School Hindi",
     thumbnail_url: "https://i.ytimg.com/vi/jheCYQgupc0/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -33,21 +33,21 @@ export const videos = [
     title:
       "Mixed Team Bronze - SIN vs IND - WD - 2014 Commonwealth Games badminton",
     thumbnail_url: "https://i.ytimg.com/vi/t7pGqYhbJEA/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=S2-G_tbIj80",
     title: "12 Basic Badminton Techniques that you MUST Know - Introduction",
     thumbnail_url: "https://i.ytimg.com/vi/S2-G_tbIj80/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=nP5rWtBm9BQ",
     title: "How To Defend In Doubles - The Fundamentals Of Badminton Defence",
     thumbnail_url: "https://i.ytimg.com/vi/nP5rWtBm9BQ/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -55,7 +55,7 @@ export const videos = [
     title:
       "Backhand Serve - A step-by-step guide EVERY BADMINTON PLAYER NEEDS!",
     thumbnail_url: "https://i.ytimg.com/vi/kzWpvuWeih0/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -63,28 +63,28 @@ export const videos = [
     title:
       "Badminton Semi-Finals: Lee Chong Wei vs Lin Dan - Rio 2016 FULL Replay | Throwback Thursday",
     thumbnail_url: "https://i.ytimg.com/vi/Hf-n1yfd8II/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=uK3L6H20MTw",
     title: "High beginner to intermediate classes with ST Badminton",
     thumbnail_url: "https://i.ytimg.com/vi/uK3L6H20MTw/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=4E3Uqc7HflQ",
     title: "7 Tactical Advice for Single Players",
     thumbnail_url: "https://i.ytimg.com/vi/4E3Uqc7HflQ/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=js7yajZq3fQ",
     title: "10 MOST FAMOUS Badminton Trick Shots",
     thumbnail_url: "https://i.ytimg.com/vi/js7yajZq3fQ/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -92,7 +92,7 @@ export const videos = [
     title:
       "PV Sindhu 🇮🇳 - The First Indian Woman to win an Olympic Silver Medal! | Athlete Highlights",
     thumbnail_url: "https://i.ytimg.com/vi/klAbKqpTHpo/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -100,14 +100,14 @@ export const videos = [
     title:
       "Lin Dan Vs. Lee Chong Wei - best rallies and highlights from Asian Championship",
     thumbnail_url: "https://i.ytimg.com/vi/n20IQaOMLZQ/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=hkDDMG0edKU",
     title: "Top 10 Net Plays of LEE CHONG WEI",
     thumbnail_url: "https://i.ytimg.com/vi/hkDDMG0edKU/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
@@ -115,20 +115,20 @@ export const videos = [
     title:
       "Badminton Thug Life | Savage Badminton Rallies | Savage & Thug Badminton Moments | God of Sports",
     thumbnail_url: "https://i.ytimg.com/vi/1xhVH-cUZLo/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=JtUgTDRB39M",
     title: "Badminton Respect 2021",
     thumbnail_url: "https://i.ytimg.com/vi/JtUgTDRB39M/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
   {
     _id: uuid(),
     url: "https://www.youtube.com/watch?v=uIj03RsGrJA",
     title: "Men's Badminton 🏸 Gold Medal Match | Tokyo Replays",
     thumbnail_url: "https://i.ytimg.com/vi/uIj03RsGrJA/hqdefault.jpg",
-    like: 0,
+    likes: 0,
   },
 ];

@@ -1,7 +1,7 @@
-import React from "react";
+import { WatchLaterMain } from "../Components/components";
 
 const WatchLater = () => {
-  return <div className="h-screen w-screen">This is a watch later</div>;
+  return <WatchLaterMain />;
 };
 
 export { WatchLater };

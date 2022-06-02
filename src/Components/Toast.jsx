@@ -8,14 +8,15 @@ const Toast = () => {
   useEffect(() => {
     toastVisibility &&
       setTimeout(() => {
+        console.log("setting the tostData to default");
         dispatch(
           setToastData({
-            toastVisibility: !toastVisibility,
-            toastText,
-            toastType,
+            toastVisibility: false,
+            toastText: "",
+            toastType: "",
           })
         );
-      }, 1500);
+      }, 500);
   });
 
   return (
@@ -30,7 +31,7 @@ const Toast = () => {
               : "bg-green-300"
           }  flex justify-center items-center gap-3 ${
             !toastVisibility ? "-right-[22rem]" : "right-0"
-          } transition-all duration-200`}
+          } transition-all duration-200 z-20`}
         >
           {toastType === "error" ? (
             <i className={` fa-solid fa-circle-xmark text-red-700  text-xl`} />
