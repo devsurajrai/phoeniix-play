@@ -11,8 +11,7 @@ import {
   Home,
 } from "./pages/pages";
 import { Routes, Route } from "react-router-dom";
-import { selectAuthInfo } from "./redux/slice/authSlice";
-import { useSelector } from "react-redux";
+
 import {
   Header,
   PublicRoute,
@@ -20,16 +19,18 @@ import {
   Toast,
   Sidebar,
 } from "./Components/components";
-import TwopiRest from "twopi-rest";
 
+import { AddToPlaylistModal } from "./Components/components";
 export const App = () => {
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Header will be visible on each page. */}
       <Header />
+      {/* These are the components which will appear only when specific event happens */}
       <Sidebar />
       <Toast />
-      {/* <TwopiRest /> */}
+      <AddToPlaylistModal />
+      {/* These are the varipus routes of the video library app */}
       <Routes>
         {/* These are the Public Pages */}
         <Route
@@ -100,7 +101,7 @@ export const App = () => {
           }
         />
         <Route
-          path="/playlists/playlist/:id"
+          path="/playlists/playlist/:playlistID"
           element={
             <RequiresAuth>
               <Playlist />

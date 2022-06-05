@@ -12,3 +12,5 @@ export { SignupMain } from "./SignupMain.jsx";
 export { HistoryMain } from "./HistoryMain.jsx";
 export { LikesMain } from "./LikesMain.jsx";
 export { WatchLaterMain } from "./WatchLaterMain.jsx";
+export { AddToPlaylistModal } from "./AddToPlaylistModal.jsx";
+export { PlaylistMain } from "./PlaylistMain.jsx";

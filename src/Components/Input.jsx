@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 const Input = ({
   placeholder,
   password,
@@ -22,9 +24,6 @@ const Input = ({
           role="button"
         />
       )}
-
-      {/* This icon will be visible when user is clicked on eye icon to show the pass  */}
-      {/* <i className="fa-solid fa-eye-slash" /> */}
     </label>
   );
 };

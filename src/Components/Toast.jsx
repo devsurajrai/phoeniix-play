@@ -8,7 +8,6 @@ const Toast = () => {
   useEffect(() => {
     toastVisibility &&
       setTimeout(() => {
-        console.log("setting the tostData to default");
         dispatch(
           setToastData({
             toastVisibility: false,
