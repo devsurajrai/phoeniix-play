@@ -30,7 +30,7 @@ const SinglePlaylistMain = () => {
         </p>
       </div>
       <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem]">
-        {singlePlaylistData ? (
+        {singlePlaylistData?.videos.length !== 0 ? (
           singlePlaylistData?.videos?.map((video) => (
             <VideoCard
               key={video._id}
