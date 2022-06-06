@@ -23,7 +23,6 @@ export const getPlaylist = createAsyncThunk(
 export const removeVideoFromPlaylist = createAsyncThunk(
   "playlist/removeVideoFromPlaylist",
   async ({ videoID, playlistID, encodedToken }) => {
-    console.log(playlistID, videoID, encodedToken);
     const config = {
       headers: {
         authorization: encodedToken,

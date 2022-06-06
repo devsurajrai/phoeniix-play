@@ -14,8 +14,6 @@ const PlaylistMain = () => {
   const dispatch = useDispatch();
   const playlists = useSelector(selectPlaylists);
   const { encodedToken } = useSelector(selectAuthInfo);
-  const [playlistID, setPlaylistID] = useState("");
-  console.log(playlists);
   return (
     <div className="h-[calc(100vh-4rem)] overflow-scroll">
       <div className="bg-[#334E68] mt-1 mb-3 fixed w-full text-[#F0F4F8] flex justify-between items-center">
