@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { VideoCard } from "./VideoCard.jsx";
 const LikesMain = () => {
   const likedVideoData = useSelector(selectLikedVideos);
-  console.log("liked Videos Data", likedVideoData);
   return (
     <div className="h-[calc(100vh-4rem)] overflow-scroll">
       <div className="bg-[#334E68] mt-1 mb-3 fixed w-full text-[#F0F4F8] flex justify-end items-center">

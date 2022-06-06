@@ -30,7 +30,6 @@ export const useFetchedHistoryData = ({
   } else if (historyDataStatus === "failed") {
     jsx = <h3>{historyDataError}</h3>;
   } else {
-    console.log(historyData);
     historyData.length !== 0
       ? (jsx = historyData.map(
           (video) =>

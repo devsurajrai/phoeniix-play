@@ -22,7 +22,6 @@ const videosSlice = createSlice({
       state.videos[index].likes += 1;
     },
     decreaseVideoLikeCount: (state, action) => {
-      console.log("decreasing llike");
       const index = state.videos.findIndex(
         (video) => video._id === action.payload._id
       );

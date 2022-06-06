@@ -6,7 +6,8 @@ export const videoCardHandlers = (
   removeLikedVideo,
   setToastText,
   removeHistoryVideo,
-  removeWatchLaterVideo
+  removeWatchLaterVideo,
+  removeVideoFromPlaylist
 ) => {
   const addLikeVideoHandler = (video, encodedToken) => {
     dispatch(setToastText("Video Added To Likes"));
@@ -34,6 +35,13 @@ export const videoCardHandlers = (
     setToastText("Video Removed Form History");
     dispatch(removeHistoryVideo({ video, encodedToken }));
   };
+  const removeVideoFromPlaylistHandler = (
+    videoID,
+    playlistID,
+    encodedToken
+  ) => {
+    dispatch(removeVideoFromPlaylist({ videoID, playlistID, encodedToken }));
+  };
 
   return {
     addLikeVideoHandler,
@@ -42,5 +50,6 @@ export const videoCardHandlers = (
     removeLikedVideoHandler,
     removeHistoryVideoHandler,
     removeWatchLaterVideoHandler,
+    removeVideoFromPlaylistHandler,
   };
 };

@@ -20,7 +20,6 @@ export const createUser = createAsyncThunk(
       firstName,
       lastName,
     });
-    console.log(response);
     localStorage.setItem("token", response.data.encodedToken);
     return response.data.encodedToken;
   }
@@ -74,7 +73,6 @@ const authSlice = createSlice({
     },
     [createUser.rejected]: (state, action) => {
       state.status = "failed";
-      console.log(action.error);
       state.error = action.error.message;
     },
   },

@@ -32,7 +32,6 @@ export const fetchHistoryVideos = createAsyncThunk(
 export const removeHistoryVideo = createAsyncThunk(
   "history/removeHistoryVideo",
   async ({ video, encodedToken }) => {
-    console.log("video ID", video._id);
     const config = {
       headers: {
         authorization: encodedToken,
@@ -42,7 +41,6 @@ export const removeHistoryVideo = createAsyncThunk(
       `/api/user/history/${video._id}`,
       config
     );
-    console.log(response.data.history);
     return response.data.history;
   }
 );

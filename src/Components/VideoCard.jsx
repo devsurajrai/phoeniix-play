@@ -4,9 +4,12 @@
 // the above es-lint rules have been disabled for this file, these are basically to enforce accessibility
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toggleAddToPlaylistModal } from "../redux/slice/addToPlaylistModalSlice";
+import {
+  toggleAddToPlaylistModal,
+  setVideoToAddToPlaylist,
+} from "../redux/slice/addToPlaylistModalSlice";
 import { useState } from "react";
-import { AddToPlaylistModal } from "./AddToPlaylistModal.jsx";
+
 import {
   addLikedVideo,
   selectLikedVideoStatus,
@@ -50,13 +53,15 @@ import {
   selectHistoryStatus,
   setHistoryStatusToDefault,
 } from "../redux/slice/historySlice";
-const VideoCard = ({ video, width, isInHistory }) => {
+import { removeVideoFromPlaylist } from "../redux/slice/singlePlaylistSlice";
+import { useParams } from "react-router-dom";
+const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
   const dispatch = useDispatch();
   const { _id, title, thumbnail_url, likes } = video;
   const { encodedToken } = useSelector(selectAuthInfo);
-
   const [currentVideo, setCurrentVideo] = useState(null);
   const navigate = useNavigate();
+  const { playlistID } = useParams();
 
   // Like and Watchlater states access
   const videoLikeStatus = useSelector(selectLikedVideoStatus);
@@ -92,8 +97,16 @@ const VideoCard = ({ video, width, isInHistory }) => {
     setToastText,
     removeHistoryVideo,
     removeWatchLaterVideo,
-    removeWatchLaterVideo
+    removeWatchLaterVideo,
+    removeVideoFromPlaylist
   );
+  const removeVideoFromPlaylistHandler = (
+    videoID,
+    playlistID,
+    encodedToken
+  ) => {
+    dispatch(removeVideoFromPlaylist({ videoID, playlistID, encodedToken }));
+  };
   // useEffect for handling the toast behaviour
   useEffect(() => {
     if (videoLikeStatus === "idle") {
@@ -135,7 +148,6 @@ const VideoCard = ({ video, width, isInHistory }) => {
           toastType: "success",
         })
       );
-      console.log(toastText);
       dispatch(setWatchlaterStatusToDefault());
     }
     if (videoWatchLaterStatus === "failed") {
@@ -187,14 +199,14 @@ const VideoCard = ({ video, width, isInHistory }) => {
 
         <footer
           className={`text-2xl p-2 pb-3 ${
-            !isInHistory && "flex justify-between"
+            !isInHistory && !isInPlaylist && "flex justify-between"
           } `}
         >
           <section className="text-sm flex items-center">
-            {!isInHistory && <p>Likes: {likes}</p>}
+            {!isInHistory && !isInPlaylist ? <p>Likes: {likes}</p> : ""}
           </section>
           <section>
-            {!isInHistory ? (
+            {!isInHistory && !isInPlaylist ? (
               <>
                 <i
                   className={`fa-solid fa-thumbs-up pr-3 cursor-pointer hover:text-[#27AB83] ${
@@ -220,7 +232,10 @@ const VideoCard = ({ video, width, isInHistory }) => {
                 <i
                   className="fa-solid fa-plus cursor-pointer hover:text-[#27AB83]
           "
-                  onClick={() => dispatch(toggleAddToPlaylistModal())}
+                  onClick={() => {
+                    dispatch(setVideoToAddToPlaylist(video));
+                    dispatch(toggleAddToPlaylistModal());
+                  }}
                 />
               </>
             ) : (
@@ -228,15 +243,20 @@ const VideoCard = ({ video, width, isInHistory }) => {
                 <i
                   className="fa-solid fa-trash cursor-pointer hover:text-[#27AB83]"
                   onClick={() => {
-                    removeHistoryVideoHandler(video, encodedToken);
+                    !isInPlaylist
+                      ? removeHistoryVideoHandler(video, encodedToken)
+                      : removeVideoFromPlaylistHandler(
+                          video._id,
+                          playlistID,
+                          encodedToken
+                        );
                   }}
                 />
               </div>
             )}
           </section>
         </footer>
-        {/* Add to playlist modal  */}
-        <AddToPlaylistModal />
+        {/* <AddToPlaylistModal /> */}
       </div>
     </>
   );

@@ -9,6 +9,9 @@ import authSliceReducer from "../slice/authSlice";
 import likedVideoSliceReducer from "../slice/likedVideoSlice";
 import historySliceReducer from "../slice/historySlice";
 import watchLaterSliceReducer from "../slice/watchLaterSlice";
+import createPlaylistModalSliceReducer from "../slice/createPlaylistModalSlice";
+import createPlaylistSliceReducer from "../slice/createPlaylistSlice";
+import singlePlaylistSliceReducer from "../slice/singlePlaylistSlice";
 export default configureStore({
   reducer: {
     sidebar: sideBarReducer,
@@ -21,5 +24,8 @@ export default configureStore({
     likedVideo: likedVideoSliceReducer,
     history: historySliceReducer,
     watchlater: watchLaterSliceReducer,
+    createPlaylistModal: createPlaylistModalSliceReducer,
+    playlists: createPlaylistSliceReducer,
+    playlist: singlePlaylistSliceReducer,
   },
 });

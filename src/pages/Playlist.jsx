@@ -1,5 +1,7 @@
+import { SinglePlaylistMain } from "../Components/SinglePlaylistMain.jsx";
+
 const Playlist = () => {
-  return <div className="h-screen w-screen">This is a Playlist page</div>;
+  return <SinglePlaylistMain />;
 };
 
 export { Playlist };
