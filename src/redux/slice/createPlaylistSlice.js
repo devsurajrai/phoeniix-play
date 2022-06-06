@@ -60,8 +60,6 @@ export const addVideoToPlaylist = createAsyncThunk(
 export const removePlaylist = createAsyncThunk(
   "playlists/removePlaylist",
   async ({ playlistID, encodedToken }) => {
-    console.log("playlist is being removed");
-    console.log("playlistID", playlistID, "token", encodedToken);
     const config = {
       headers: {
         authorization: encodedToken,
@@ -71,7 +69,6 @@ export const removePlaylist = createAsyncThunk(
       `/api/user/playlists/${playlistID}`,
       config
     );
-    console.log(response.data);
     return response.data.playlists;
   }
 );
