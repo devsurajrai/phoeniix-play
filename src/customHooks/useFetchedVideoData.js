@@ -32,15 +32,6 @@ const useFetchedVideoData = (videoID) => {
       <div>
         <ReactPlayer url={videoData.url} width="70vw" height="70vh" />
         <h3 className="font-bold text-xl py-3 w-[90%]">{videoData.title}</h3>
-        <div className="text-3xl w-full flex  justify-end gap-4 ">
-          <i className="fa-solid fa-thumbs-up pr-3 cursor-pointer hover:text-[#27AB83]" />
-          <i className="fa-solid fa-clock pr-3 cursor-pointer hover:text-[#27AB83]" />
-          <i
-            className="fa-solid fa-plus cursor-pointer hover:text-[#27AB83]
-          "
-            onClick={() => dispatch(toggleAddToPlaylistModal())}
-          />
-        </div>
       </div>
     );
   }

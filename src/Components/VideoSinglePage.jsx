@@ -7,10 +7,13 @@ import { AddToPlaylistModal } from "./AddToPlaylistModal.jsx";
 const VideoSinglePage = () => {
   const { videoID } = useParams();
   const { videoContent } = useFetchedVideoData(videoID);
-  const { jsx } = useFetchedVideosData({
-    videoCardWidth: "w-full",
-    videoID,
-  });
+  const { jsx } = useFetchedVideosData(
+    {
+      videoCardWidth: "w-full",
+      videoID,
+    },
+    "All"
+  );
   return (
     <div className=" h-[calc(100vh-4rem)] flex">
       <section className="w-3/4 bg-white h-full flex flex-col items-center pt-9 ">

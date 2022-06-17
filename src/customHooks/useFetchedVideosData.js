@@ -11,7 +11,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { filterByCategory } from "../utils/utils";
 
 export const useFetchedVideosData = (
-  { videoCardWidth = "w-1/5", videoID = 0 },
+  { videoCardWidth = "w-1/5", videoID = "" },
   filterBy
 ) => {
   const videoDataStatus = useSelector(selectVideosStatus);

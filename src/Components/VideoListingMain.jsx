@@ -28,8 +28,8 @@ m-1 px-1  rounded-md border-2 border-[#27AB83] cursor-pointer  hover:bg-[#C6F7E2
                 key={category._id}
                 className={`
 m-1 px-1 rounded-md border-2 border-[#27AB83] cursor-pointer  hover:bg-[#C6F7E2] hover:text-[#334E68] ${
-                  filterBy.toLowerCase() ===
-                    category.categoryName.toLowerCase() &&
+                  filterBy?.toLowerCase() ===
+                    category?.categoryName?.toLowerCase() &&
                   "bg-[#C6F7E2] text-[#334E68]"
                 }
 `}
