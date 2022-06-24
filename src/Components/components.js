@@ -7,7 +7,7 @@ export { LoginMain } from "./LoginMain.jsx";
 export { Input } from "./Input.jsx";
 export { Button } from "./Button.jsx";
 export { Toast } from "./Toast.jsx";
-export { Sidebar } from "./SideBar/SideBar.jsx";
+export { Sidebar } from "./SideBar.jsx";
 export { SignupMain } from "./SignupMain.jsx";
 export { HistoryMain } from "./HistoryMain.jsx";
 export { LikesMain } from "./LikesMain.jsx";

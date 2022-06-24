@@ -15,7 +15,7 @@ const Toast = () => {
             toastType: "",
           })
         );
-      }, 500);
+      }, 2000);
   });
 
   return (
@@ -27,7 +27,9 @@ const Toast = () => {
               ? "bg-red-300"
               : toastType === "in progress"
               ? "bg-yellow-300"
-              : "bg-green-300"
+              : toastType === "finished"
+              ? "bg-green-300"
+              : null
           }  flex justify-center items-center gap-3 ${
             !toastVisibility ? "-right-[22rem]" : "right-0"
           } transition-all duration-200 z-20`}
@@ -36,9 +38,9 @@ const Toast = () => {
             <i className={` fa-solid fa-circle-xmark text-red-700  text-xl`} />
           ) : toastType === "in progress" ? (
             <i className="fa-solid fa-spinner text-yellow-700 text-xl"></i>
-          ) : (
+          ) : toastType === "finished" ? (
             <i className="fa-solid fa-circle-check text-xl text-green-700" />
-          )}
+          ) : null}
           <p
             className={`
             ${

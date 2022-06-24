@@ -1,6 +1,6 @@
 import { Input, Button } from "./components.js";
 import { useDispatch } from "react-redux";
-import { setToastData } from "../redux/slice/toastSlice.js";
+import { setToastData } from "../redux/slice/toastSlice";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { selectAuthInfo, loginUser } from "../redux/slice/authSlice.js";
@@ -23,21 +23,12 @@ const LoginMain = () => {
       }, 1000);
   }, [passType]);
   useEffect(() => {
-    if (authState.status === "loading") {
-      dispatch(
-        setToastData({
-          toastVisibility: true,
-          toastText: "Logging In",
-          toastType: "in progress",
-        })
-      );
-    }
     if (authState.status === "finished") {
       dispatch(
         setToastData({
           toastVisibility: true,
           toastText: "Logged in Successfully ",
-          toastType: "Success",
+          toastType: "finished",
         })
       );
       navigate(location?.state?.from || "/", { replace: true });
@@ -46,7 +37,7 @@ const LoginMain = () => {
       dispatch(
         setToastData({
           toastVisibility: true,
-          toastText: authState.error,
+          toastText: "Something went wrong. Try again later.",
           toastType: "error",
         })
       );
@@ -88,7 +79,14 @@ const LoginMain = () => {
             buttonText="Login"
             type="submit"
             callback={(event) =>
-              login(dispatch, loginUser, event, loginEmail, loginPass)
+              login(
+                dispatch,
+                loginUser,
+                event,
+                loginEmail,
+                loginPass,
+                setToastData
+              )
             }
           />
           <Button
@@ -100,7 +98,8 @@ const LoginMain = () => {
                 loginUser,
                 event,
                 "devsurajrai@gmail.com",
-                "rai123"
+                "rai123",
+                setToastData
               )
             }
           />

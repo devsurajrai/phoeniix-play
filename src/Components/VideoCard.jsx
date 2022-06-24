@@ -58,7 +58,7 @@ import { useParams } from "react-router-dom";
 const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
   const dispatch = useDispatch();
   const { _id, title, thumbnail_url, likes } = video;
-  const { encodedToken } = useSelector(selectAuthInfo);
+  const { encodedToken, isUserLoggedIn } = useSelector(selectAuthInfo);
   const [currentVideo, setCurrentVideo] = useState(null);
   const navigate = useNavigate();
   const { playlistID } = useParams();
@@ -73,6 +73,7 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
   const likedVideosData = useSelector(selectLikedVideos);
   const historyVideoData = useSelector(selectHistory);
   const watchLaterVideoData = useSelector(selectWatchLater);
+
   // check for the video in history,likes and watchlater
   const isVideoPresentInHistory = isVideoInHistory(historyVideoData, video);
   const isVideoPresentInLikes = isVideoInLikedVideos(likedVideosData, video);
@@ -118,7 +119,7 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
         setToastData({
           toastVisibility: true,
           toastText: toastText,
-          toastType: "success",
+          toastType: "finished",
         })
       );
       // set the like video api response status from "finished" to "idle"
@@ -145,7 +146,7 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
         setToastData({
           toastVisibility: true,
           toastText: toastText,
-          toastType: "success",
+          toastType: "finished",
         })
       );
       dispatch(setWatchlaterStatusToDefault());
@@ -165,7 +166,7 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
         setToastData({
           toastVisibility: true,
           toastText: toastText,
-          toastType: "success",
+          toastType: "finished",
         })
       );
       dispatch(setHistoryStatusToDefault());
@@ -213,10 +214,14 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
                     isVideoPresentInLikes && "text-[#27AB83]"
                   }`}
                   onClick={() => {
-                    setCurrentVideo(video);
-                    !isVideoPresentInLikes
-                      ? addLikeVideoHandler(video, encodedToken)
-                      : removeLikedVideoHandler(video, encodedToken);
+                    if (isUserLoggedIn) {
+                      setCurrentVideo(video);
+                      !isVideoPresentInLikes
+                        ? addLikeVideoHandler(video, encodedToken)
+                        : removeLikedVideoHandler(video, encodedToken);
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                 />
                 <i
@@ -224,17 +229,25 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
                   ${isVideoPresentInWatchLater && "text-[#27AB83]"}
                   `}
                   onClick={() => {
-                    !isVideoPresentInWatchLater
-                      ? addWatchlaterVideoHandler(video, encodedToken)
-                      : removeWatchLaterVideoHandler(video, encodedToken);
+                    if (isUserLoggedIn) {
+                      !isVideoPresentInWatchLater
+                        ? addWatchlaterVideoHandler(video, encodedToken)
+                        : removeWatchLaterVideoHandler(video, encodedToken);
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                 />
                 <i
                   className="fa-solid fa-plus cursor-pointer hover:text-[#27AB83]
           "
                   onClick={() => {
-                    dispatch(setVideoToAddToPlaylist(video));
-                    dispatch(toggleAddToPlaylistModal());
+                    if (isUserLoggedIn) {
+                      dispatch(setVideoToAddToPlaylist(video));
+                      dispatch(toggleAddToPlaylistModal());
+                    } else {
+                      navigate("/login");
+                    }
                   }}
                 />
               </>
