@@ -11,7 +11,7 @@ export const logOut = (
     setToastData({
       toastVisibility: !toastData.toastVisibility,
       toastText: "Logged Out Successfully",
-      toastType: "success",
+      toastType: "finished",
     })
   );
   navigate("/");

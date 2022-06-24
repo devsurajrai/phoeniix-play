@@ -1,10 +1,9 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import {
-  isSideBarVisible,
-  toggleSidebar,
-} from "../../redux/slice/sideBarSlice";
+import { isSideBarVisible, toggleSidebar } from "../redux/slice/sideBarSlice";
 
 const Sidebar = () => {
   const isSidebarShown = useSelector(isSideBarVisible);
@@ -49,11 +48,20 @@ const Sidebar = () => {
             style={({ isActive }) => {
               return isActive ? activeStyle : undefined;
             }}
-            to="/history"
+            to="/videos"
             onClick={() => dispatch(toggleSidebar())}
           >
-            <i className="fa-solid fa-clock-rotate-left pr-3" />
-            History
+            <i className="fa-solid fa-video pr-3" /> Videos
+          </NavLink>
+
+          <NavLink
+            style={({ isActive }) => {
+              return isActive ? activeStyle : undefined;
+            }}
+            to="/playlists"
+            onClick={() => dispatch(toggleSidebar())}
+          >
+            <i className="fa-solid fa-book-open pr-3" /> Playlists
           </NavLink>
           <NavLink
             style={({ isActive }) => {
@@ -68,28 +76,20 @@ const Sidebar = () => {
             style={({ isActive }) => {
               return isActive ? activeStyle : undefined;
             }}
-            to="/playlists"
-            onClick={() => dispatch(toggleSidebar())}
-          >
-            <i className="fa-solid fa-book-open pr-3" /> Playlists
-          </NavLink>
-          <NavLink
-            style={({ isActive }) => {
-              return isActive ? activeStyle : undefined;
-            }}
-            to="/videos"
-            onClick={() => dispatch(toggleSidebar())}
-          >
-            <i className="fa-solid fa-video pr-3" /> Videos
-          </NavLink>
-          <NavLink
-            style={({ isActive }) => {
-              return isActive ? activeStyle : undefined;
-            }}
             to="/watch-later"
             onClick={() => dispatch(toggleSidebar())}
           >
             <i className="fa-solid fa-clock pr-3" /> Watch Later
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => {
+              return isActive ? activeStyle : undefined;
+            }}
+            to="/history"
+            onClick={() => dispatch(toggleSidebar())}
+          >
+            <i className="fa-solid fa-clock-rotate-left pr-3" />
+            History
           </NavLink>
         </nav>
       </div>
