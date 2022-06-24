@@ -75,7 +75,7 @@ const AddToPlaylistModal = () => {
             name="add_to_playlist"
             className="text-[#334E68] border-2 border-[#334E68] focus:outline-none w-1/2 h-[2.2rem] px-2 rounded-md "
             onChange={(e) => setPlaylistID(e.target.value)}
-            value="Select Playlist"
+            value={playlistId}
           >
             <option>Select Playlist</option>
             {playlists.map((playlist, index) => (
