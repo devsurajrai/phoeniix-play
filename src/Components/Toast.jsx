@@ -5,6 +5,7 @@ const Toast = () => {
   const { toastVisibility, toastText, toastType } =
     useSelector(selectToastData);
   const dispatch = useDispatch();
+  console.log("Toast Text", toastText);
   useEffect(() => {
     toastVisibility &&
       setTimeout(() => {

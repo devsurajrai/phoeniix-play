@@ -67,7 +67,6 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
   const videoLikeStatus = useSelector(selectLikedVideoStatus);
   const videoLikeError = useSelector(selectLikedVideoError);
   const videoWatchLaterStatus = useSelector(selectWatchLaterStatus);
-  const videoWatchLaterError = useSelector(selectWatchLaterError);
   const toastText = useSelector(selectToastText);
   const historyStatus = useSelector(selectHistoryStatus);
   const likedVideosData = useSelector(selectLikedVideos);
@@ -114,14 +113,6 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
       setCurrentVideo(null);
     }
     if (videoLikeStatus === "finished") {
-      // set the toast data to display on fulfilled api response
-      dispatch(
-        setToastData({
-          toastVisibility: true,
-          toastText: toastText,
-          toastType: "finished",
-        })
-      );
       // set the like video api response status from "finished" to "idle"
       dispatch(setLikedVideoStatusToDefault());
       // increase the like count of the video liked
@@ -141,21 +132,11 @@ const VideoCard = ({ video, width, isInHistory, isInPlaylist }) => {
       );
       dispatch(setLikedVideoStatusToDefault());
     }
-    if (videoWatchLaterStatus === "finished") {
-      dispatch(
-        setToastData({
-          toastVisibility: true,
-          toastText: toastText,
-          toastType: "finished",
-        })
-      );
-      dispatch(setWatchlaterStatusToDefault());
-    }
     if (videoWatchLaterStatus === "failed") {
       dispatch(
         setToastData({
           toastVisibility: true,
-          toastText: videoWatchLaterError,
+          toastText: "Something went wrong",
           toastType: "error",
         })
       );
