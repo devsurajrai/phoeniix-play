@@ -5,7 +5,7 @@ import { removeHistoryVideosAll } from "../redux/slice/historySlice";
 import { selectAuthInfo } from "../redux/slice/authSlice";
 import { useSelector } from "react-redux";
 import { selectHistory } from "../redux/slice/historySlice";
-import { VideoCard } from "./VideoCard";
+import { VideoCard } from "./VideoCard.jsx";
 const HistoryMain = () => {
   const historyData = useSelector(selectHistory);
   const dispatch = useDispatch();
@@ -27,7 +27,11 @@ const HistoryMain = () => {
           Total Videos:{historyData.length}
         </p>
       </div>
-      <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem]">
+      <div
+        className={`flex gap-14 flex-wrap ${
+          historyData.length !== 0 ? "justify-start" : "justify-center"
+        } p-12 mt-[3rem] mb-[2rem] `}
+      >
         {historyData.length !== 0 ? (
           historyData.map((video) => (
             <VideoCard
@@ -40,7 +44,7 @@ const HistoryMain = () => {
         ) : (
           <div className="bg-yellow-300 h-[4rem] p-5 w-[30rem] flex justify-center">
             <p className="text-xl font-semibold text-yellow-700">
-              Sorry ! its nothing here.
+              Your history is empty.
             </p>
           </div>
         )}

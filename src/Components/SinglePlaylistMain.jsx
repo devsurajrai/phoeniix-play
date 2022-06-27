@@ -6,12 +6,7 @@ import { useParams } from "react-router-dom";
 import {
   getPlaylist,
   selectSinglePlaylist,
-  selectSinglePlaylistError,
 } from "../redux/slice/singlePlaylistSlice";
-import {
-  getPlaylists,
-  selectPlaylists,
-} from "../redux/slice/createPlaylistSlice.js";
 
 const SinglePlaylistMain = () => {
   const dispatch = useDispatch();
@@ -19,6 +14,7 @@ const SinglePlaylistMain = () => {
   const { playlistID } = useParams();
   const singlePlaylistData = useSelector(selectSinglePlaylist);
   useEffect(() => {
+    console.log("fetching playlists");
     dispatch(getPlaylist({ playlistID, encodedToken }));
   }, [dispatch, encodedToken, playlistID]);
   return (
@@ -31,9 +27,9 @@ const SinglePlaylistMain = () => {
       </div>
       <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem]">
         {singlePlaylistData ? (
-          singlePlaylistData?.videos?.map((video) => (
+          singlePlaylistData?.videos?.map((video, idx) => (
             <VideoCard
-              key={video._id}
+              key={idx}
               video={video}
               width="w-1/5"
               isInPlaylist={true}
@@ -42,7 +38,7 @@ const SinglePlaylistMain = () => {
         ) : (
           <div className="bg-yellow-300 h-[4rem] p-5 w-[30rem] flex justify-center">
             <p className="text-xl font-semibold text-yellow-700">
-              Sorry ! its nothing here.
+              This playlist is empty.
             </p>
           </div>
         )}

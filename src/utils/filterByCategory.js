@@ -1,5 +1,4 @@
 export const filterByCategory = (filterBy, videos) => {
-  // console.log("filterBy", filterBy);
   if (filterBy === "All") {
     return videos;
   }

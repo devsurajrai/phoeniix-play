@@ -36,6 +36,7 @@ export const fetchWatchLaterVideos = createAsyncThunk(
 export const removeWatchLaterVideo = createAsyncThunk(
   "watchlater/removeWatchLaterVideo",
   async ({ videoID, encodedToken }) => {
+    console.log("remove watchlater thunk");
     const config = {
       headers: {
         authorization: encodedToken,

@@ -7,7 +7,6 @@ export const login = (
   setToastData
 ) => {
   event.preventDefault();
-  console.log(email, password);
   if (email === "" || password === "") {
     dispatch(
       setToastData({

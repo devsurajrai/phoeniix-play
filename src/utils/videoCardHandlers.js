@@ -2,11 +2,10 @@ export const videoCardHandlers = (
   dispatch,
   addVideoToWatchLater,
   addLikedVideo,
-  addVideoToHistory,
   removeLikedVideo,
-  removeHistoryVideo,
+  removeVideoFromPlaylist,
   removeWatchLaterVideo,
-  removeVideoFromPlaylist
+  removeHistoryVideo
 ) => {
   const addLikeVideoHandler = (video, encodedToken) => {
     dispatch(addLikedVideo({ video, encodedToken }));
@@ -21,15 +20,9 @@ export const videoCardHandlers = (
   };
   const removeWatchLaterVideoHandler = (video, encodedToken) => {
     const videoID = video._id;
-
     dispatch(removeWatchLaterVideo({ videoID, encodedToken }));
   };
-  const addHistoryVideoHandler = (video, encodedToken) => {
-    dispatch(addVideoToHistory({ video, encodedToken }));
-  };
-  const removeHistoryVideoHandler = (video, encodedToken) => {
-    dispatch(removeHistoryVideo({ video, encodedToken }));
-  };
+
   const removeVideoFromPlaylistHandler = (
     videoID,
     playlistID,
@@ -37,11 +30,13 @@ export const videoCardHandlers = (
   ) => {
     dispatch(removeVideoFromPlaylist({ videoID, playlistID, encodedToken }));
   };
+  const removeHistoryVideoHandler = (video, encodedToken) => {
+    dispatch(removeHistoryVideo({ video, encodedToken }));
+  };
 
   return {
     addLikeVideoHandler,
     addWatchlaterVideoHandler,
-    addHistoryVideoHandler,
     removeLikedVideoHandler,
     removeHistoryVideoHandler,
     removeWatchLaterVideoHandler,

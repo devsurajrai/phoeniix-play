@@ -11,7 +11,11 @@ const WatchLaterMain = () => {
           Total Videos:{watchLaterVideoData.length}
         </p>
       </div>
-      <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem]">
+      <div
+        className={`flex gap-14 flex-wrap ${
+          watchLaterVideoData.length !== 0 ? "justify-start" : "justify-center"
+        } p-12 mt-[3rem] mb-[2rem] `}
+      >
         {watchLaterVideoData.length !== 0 ? (
           watchLaterVideoData.map((video) => (
             <VideoCard key={video._id} video={video} width="w-1/5" />
@@ -19,7 +23,7 @@ const WatchLaterMain = () => {
         ) : (
           <div className="bg-yellow-300 h-[4rem] p-5 w-[30rem] flex justify-center">
             <p className="text-xl font-semibold text-yellow-700">
-              Sorry ! its nothing here.
+              You don't have any watchlater videos.
             </p>
           </div>
         )}

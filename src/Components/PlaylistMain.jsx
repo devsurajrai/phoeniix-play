@@ -26,7 +26,11 @@ const PlaylistMain = () => {
           Total Playlists:{playlists.length}
         </p>
       </div>
-      <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem] ">
+      <div
+        className={`flex gap-14 flex-wrap ${
+          playlists.length !== 0 ? "justify-start" : "justify-center"
+        } p-12 mt-[3rem] mb-[2rem] `}
+      >
         {/* {here goes the playlists } */}
         {playlists.length !== 0 ? (
           playlists.map((playlist) => (
@@ -57,7 +61,7 @@ const PlaylistMain = () => {
         ) : (
           <div className="bg-yellow-300 h-[4rem] p-5 w-[30rem] flex justify-center">
             <p className="text-xl font-semibold text-yellow-700">
-              Sorry ! You don't have any playlist yet.
+              You don't have any playlist.
             </p>
           </div>
         )}

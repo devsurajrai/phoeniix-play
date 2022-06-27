@@ -9,8 +9,8 @@ const VideoListingMain = () => {
   const { jsx, filteredByCategoryVideos } = useFetchedVideosData({}, filterBy);
   const videoCategories = useFetchedVideoCategories();
   return (
-    <div className="h-[calc(100vh-4rem)] overflow-scroll flex-col justify-center">
-      <div className="bg-[#334E68] mt-1 mb-3  fixed w-full text-[#F0F4F8] flex justify-between">
+    <div className="h-[calc(100vh-4rem)] overflow-scroll flex-col justify-center ">
+      <div className="bg-[#334E68] mt-1 mb-3  fixed w-full text-[#F0F4F8] flex justify-between ">
         <section className="flex items-center text-sm mx-3">
           <div
             className={`
@@ -44,7 +44,13 @@ m-1 px-1 rounded-md border-2 border-[#27AB83] cursor-pointer  hover:bg-[#C6F7E2]
           Total Videos:{filteredByCategoryVideos.length}
         </p>
       </div>
-      <div className="flex gap-14 flex-wrap justify-center mt-[5rem] mb-[2rem]">
+      <div
+        className={`flex gap-14 flex-wrap ${
+          filteredByCategoryVideos.length !== 0
+            ? "justify-start"
+            : "justify-center"
+        } p-12 mt-[3rem] mb-[2rem] `}
+      >
         {jsx}
       </div>
     </div>

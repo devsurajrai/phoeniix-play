@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFetchedVideoData } from "../customHooks/useFetchedVideoData";
 import { useFetchedVideosData } from "../customHooks/useFetchedVideosData";
 import { AddToPlaylistModal } from "./AddToPlaylistModal.jsx";
+import { LikeWatchlaterPlaylist } from "./LikeWatchlaterPlaylist";
 
 const VideoSinglePage = () => {
   const { videoID } = useParams();
@@ -23,7 +24,6 @@ const VideoSinglePage = () => {
         <h3 className="font-bold ">Recommended</h3>
         {jsx}
       </section>
-      <AddToPlaylistModal />
     </div>
   );
 };
